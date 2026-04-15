@@ -3,11 +3,17 @@
 <head><title>Quản lý Sách</title></head>
 <body style="font-family: Arial; padding: 20px;">
 
-    <div style="background: #eee; padding: 10px; display: flex; justify-content: space-between;">
-        <b>Xin chào, {{ Auth::user()->name }}</b>
-        <form action="{{ route('logout') }}" method="POST">
-            @csrf <button type="submit">Đăng xuất</button>
-        </form>
+    <div style="background: #eee; padding: 10px; display: flex; justify-content: space-between; align-items: center;">
+        <div>
+            <a href="{{ route('books.index') }}" style="margin-right: 20px; font-weight: bold; text-decoration: none; color: blue;">📚 Quản lý Sách</a>
+            <a href="{{ route('categories.index') }}" style="font-weight: bold; text-decoration: none; color: black;">📑 Quản lý Thể loại</a>
+        </div>
+        <div>
+            <b>Xin chào, {{ Auth::user()->name }}</b>
+            <form action="{{ route('logout') }}" method="POST" style="display:inline; margin-left: 10px;">
+                @csrf <button type="submit">Đăng xuất</button>
+            </form>
+        </div>
     </div>
 
     <h2>Danh sách Kho Sách</h2>
