@@ -24,7 +24,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             // Đăng nhập đúng -> Chuyển vào trang Quản lý Sách
-            return redirect()->intended('/books'); 
+            return redirect()->intended('/categories'); 
         }
 
         // Đăng nhập sai -> Quay lại form và báo lỗi

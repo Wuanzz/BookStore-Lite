@@ -1,28 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng nhập Quản trị</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body style="font-family: Arial; background-color: #f4f4f4; text-align: center; padding-top: 100px;">
+<body class="bg-light d-flex align-items-center justify-content-center vh-100">
 
-    <div style="background: white; width: 320px; margin: auto; padding: 30px; border-radius: 8px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1);">
-        <h2 style="color: #333;">Đăng Nhập Quản Trị</h2>
+    <div class="card shadow-sm" style="width: 380px;">
+        <div class="card-body p-4">
+            <h3 class="text-center mb-4 text-primary fw-bold">Đăng Nhập Quản Trị</h3>
 
-        @if($errors->any())
-            <p style="color: red; font-size: 14px;">{{ $errors->first() }}</p>
-        @endif
+            @if($errors->any())
+                <div class="alert alert-danger py-2 text-center" role="alert">
+                    {{ $errors->first() }}
+                </div>
+            @endif
 
-        <form action="/login" method="POST">
-            @csrf <p>
-                <input type="email" name="email" placeholder="Email (admin@gmail.com)" required style="width: 90%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
-            </p>
-            <p>
-                <input type="password" name="password" placeholder="Mật khẩu (123456)" required style="width: 90%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
-            </p>
-            <button type="submit" style="width: 96%; padding: 10px; background: #007BFF; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">
-                Đăng nhập
-            </button>
-        </form>
+            <form action="/login" method="POST">
+                @csrf 
+                <div class="mb-3">
+                    <label class="form-label text-muted">Tài khoản Email</label>
+                    <input type="email" name="email" class="form-control form-control-lg" placeholder="admin@gmail.com" required>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="form-label text-muted">Mật khẩu</label>
+                    <input type="password" name="password" class="form-control form-control-lg" placeholder="••••••" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold">
+                    Đăng nhập
+                </button>
+            </form>
+        </div>
     </div>
 
 </body>
