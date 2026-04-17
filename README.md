@@ -1,59 +1,131 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## **📚 Bookstore Lite - Hệ thống Quản trị Cửa hàng Sách trực tuyến**
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Bookstore Lite** là một ứng dụng web được phát triển trên nền tảng **Framework Laravel (PHP)**, được xây dựng với mục đích demo cho nội dung **“Framework Laravel và RESTful API”**.
 
-## About Laravel
+Dự án được xây dựng dựa trên kiến trúc **MVC (Model - View - Controller)** chuẩn mực, đồng thời tích hợp hệ thống cung cấp dữ liệu qua chuẩn **RESTful API**, sẵn sàng mở rộng và kết nối với các ứng dụng bên thứ ba (như Mobile App hoặc Web Client).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## **✨ Tính năng nổi bật**
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### **🖥️ Khu vực Giao diện Quản trị (Web Dashboard)**
 
-## Learning Laravel
+* **Bảo mật & Phân quyền:** Hệ thống đăng nhập (Authentication) dành riêng cho Quản trị viên (Admin) để bảo vệ dữ liệu nội bộ.
+* **Quản lý Thể loại (Category CRUD):** Thêm mới, chỉnh sửa, xóa và tra cứu danh sách các Thể loại sách.
+* **Quản lý Sách (Book CRUD):** Thao tác toàn diện với kho sách. Tích hợp thanh công cụ lọc và tìm kiếm dữ liệu trực tiếp trên giao diện.
+* **Ràng buộc Dữ liệu:** Quản lý chặt chẽ mối quan hệ 1-N (Một thể loại - Nhiều cuốn sách) thông qua Khóa ngoại (Foreign Key).
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### **📡 Cổng giao tiếp RESTful API (Dành cho Lập trình viên)**
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Hệ thống cung cấp các điểm cuối (Endpoints) trả về dữ liệu định dạng **JSON**:
 
-## Laravel Sponsors
+* **API Sách:** Hỗ trợ lấy toàn bộ danh sách kho sách (Kèm thông tin thể loại) và tiếp nhận dữ liệu thêm sách mới từ bên ngoài.
+* **API Thể loại:** Hỗ trợ truy xuất danh mục thể loại và thêm thể loại mới độc lập.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## **🛠️ Công nghệ sử dụng**
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+* **Backend:** PHP 8.x / Framework Laravel 11.x
 
-## Contributing
+* **Cơ sở dữ liệu:** MySQL & Eloquent ORM
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+* **Frontend:** 
 
-## Code of Conduct
+  * HTML5, CSS3
+  * Giao diện Bootstrap 5 (Sử dụng qua CDN)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+* **Kiểm thử API:** Thunder Client (VS Code) / Postman
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## **🚀 Hướng dẫn Cài đặt & Khởi chạy**
 
-## License
+Để chạy dự án trên máy cá nhân, vui lòng thực hiện theo các bước sau:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**Bước 1: Clone dự án** Mở Terminal/Command Prompt và tải mã nguồn về:
+
+```plaintext
+git clone https://github.com/Wuanzz/BookStore-Lite.git
+cd bookstore-lite
+```
+
+**Bước 2: Cài đặt thư viện phụ thuộc** Sử dụng Composer để tải lõi framework và các thư viện cần thiết:
+
+```plaintext
+composer install
+```
+
+**Bước 3: Tạo database** Mở XAMPP (hoặc công cụ tương đương), truy cập `phpMyAdmin` và tạo một database trống với tên `bookstore_lite_db`.
+
+**Bước 4: Cấu hình Môi trường & Database** Nhân bản file `.env.example` thành file `.env`. Mở file `.env` và cập nhật chuỗi kết nối Database:
+
+```plaintext
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=bookstore_lite_db
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+Sau đó, chạy lệnh tạo khóa bảo mật:
+
+```plaintext
+php artisan key:generate
+```
+
+**Bước 5: Khởi tạo dữ liệu (Migration & Seeder)** Chạy lệnh sau để hệ thống tự động tạo các bảng và nạp sẵn dữ liệu tài khoản quản trị:
+
+```plaintext
+php artisan migrate --seed
+```
+
+**Bước 6: Chạy ứng dụng** Khởi chạy máy chủ ảo của Laravel bằng lệnh:
+
+```plaintext
+php artisan serve
+```
+
+Dự án sẽ hoạt động tại địa chỉ: `http://localhost:8000`
+
+---
+
+## **👥 Tài khoản Test mặc định**
+
+Sau khi đã cài đặt môi trường và nạp dữ liệu (seed) xong, bạn có thể truy cập `http://localhost:8000/login` và đăng nhập bằng tài khoản Admin mặc định sau:
+
+* **Quản trị viên:** `admin@gmail.com`
+* **Mật khẩu:** `123456`
+
+---
+
+## **📖 Kiểm thử API&#xA0;**
+
+Dành cho việc kiểm thử qua Thunder Client:
+
+* `GET http://localhost:8000/api/books` : Lấy danh sách toàn bộ sách.
+
+* `POST http://localhost:8000/api/books` : Thêm sách mới (Body JSON cần có: `title`, `price`, `category_id`).
+
+  * Ví dụ: 
+
+    ```plaintext
+    {
+       "title": "Sherlock Holmes",
+       "price": 150000,
+       "category_id": 1
+    }
+    ```
+
+* `GET http://localhost:8000/api/categories` : Lấy danh sách thể loại.
+
+* `POST http://localhost:8000/api/categories` : Thêm thể loại mới (Body JSON cần có: `name`).
+
+  * Ví dụ:
+
+    ```plaintext
+    {
+       "name": "Trinh thám"
+    }
+    ```
