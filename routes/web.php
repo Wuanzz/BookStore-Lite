@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PublisherController;
+use App\Http\Controllers\ProfileController;
 
 // Gõ localhost:8000 sẽ tự động đẩy sang trang login
 Route::get('/', function () {
@@ -20,4 +21,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('books', BookController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('publishers', PublisherController::class);
+    Route::get('/profiles', [ProfileController::class, 'index'])->name('profiles.index');
+    Route::put('/profiles', [ProfileController::class, 'update'])->name('profiles.update');
 });
