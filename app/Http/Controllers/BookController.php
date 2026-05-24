@@ -39,10 +39,19 @@ class BookController extends Controller
         $request->validate([
             'title' => 'required',
             'price' => 'required|numeric',
-            'category_id' => 'required'
+            'category_id' => 'required',
+            'cover_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048' // Kiểm tra file ảnh, tối đa 2MB
         ]);
 
-        Book::create($request->all());
+        $data = $request->all();
+
+        // Nếu người dùng có chọn upload ảnh
+        if ($request->hasFile('cover_image')) {
+            // Lưu ảnh vào thư mục 'covers' nằm trong disk 'public'
+            $data['cover_image'] = $request->file('cover_image')->store('covers', 'public');
+        }
+
+        Book::create($data);
         return redirect()->route('books.index')->with('success', 'Thêm sách mới thành công!');
     }
 
@@ -59,11 +68,18 @@ class BookController extends Controller
         $request->validate([
             'title' => 'required',
             'price' => 'required|numeric',
-            'category_id' => 'required'
+            'category_id' => 'required',
+            'cover_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
         $book = Book::findOrFail($id);
-        $book->update($request->all());
+        $data = $request->all();
+
+        if ($request->hasFile('cover_image')) {
+            $data['cover_image'] = $request->file('cover_image')->store('covers', 'public');
+        }
+
+        $book->update($data);
         return redirect()->route('books.index')->with('success', 'Cập nhật thành công!');
     }
 

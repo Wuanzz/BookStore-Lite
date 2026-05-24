@@ -33,7 +33,6 @@
         </div>
     </div>
 
-    <!-- Bảng hiển thị thông tin -->
     <div class="card shadow-sm">
         <div class="card-body p-0">
             <div class="table-responsive">
@@ -41,6 +40,7 @@
                     <thead class="table-dark">
                         <tr>
                             <th class="px-3">ID</th>
+                            <th class="text-center">Ảnh bìa</th>
                             <th>Tên sách</th>
                             <th>Thể loại</th>
                             <th>Nhà xuất bản</th>
@@ -52,6 +52,13 @@
                         @foreach($books as $book)
                         <tr>
                             <td class="px-3 fw-bold">{{ $book->id }}</td>
+                            <td class="text-center">
+                                @if($book->cover_image)
+                                    <img src="{{ asset('storage/' . $book->cover_image) }}" alt="Bìa sách" class="rounded shadow-sm" style="width: 50px; height: 70px; object-fit: cover;">
+                                @else
+                                    <span class="badge bg-secondary">Chưa có ảnh</span>
+                                @endif
+                            </td>
                             <td class="fw-semibold">{{ $book->title }}</td>
                             <td><span class="badge bg-info text-dark">{{ $book->category->name ?? 'Không có' }}</span></td>
                             <td><span class="badge bg-success">{{ $book->publisher->name ?? 'Chưa cập nhật' }}</span></td>
