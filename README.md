@@ -81,7 +81,13 @@ php artisan key:generate
 php artisan migrate --seed
 ```
 
-**Bước 6: Chạy ứng dụng** Khởi chạy máy chủ ảo của Laravel bằng lệnh:
+**Bước 6: Cấp quyền hiển thị hình ảnh** Chạy lệnh sau để tạo liên kết giúp hệ thống hiển thị được hình ảnh bìa sách và avatar đã upload:
+
+```plaintext
+php artisan storage:link
+```
+
+**Bước 7: Chạy ứng dụng** Khởi chạy máy chủ ảo của Laravel bằng lệnh:
 
 ```plaintext
 php artisan serve
