@@ -32,14 +32,32 @@
         </div>
     @endif
 
-    <div class="row mb-3">
-        <div class="col-md-6">
-            <a href="{{ route('books.create') }}" class="btn btn-primary shadow-sm">+ Thêm Sách Mới</a>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        
+        <!-- Nút thêm sách -->
+        <div>
+            <a href="{{ route('books.create') }}" class="btn btn-primary shadow-sm px-4 text-nowrap">
+                + Thêm Sách Mới
+            </a>
         </div>
-        <div class="col-md-6">
-            <form action="{{ route('books.index') }}" method="GET" class="d-flex">
-                <input type="text" name="search" class="form-control me-2 shadow-sm" placeholder="Nhập tên sách cần tìm..." value="{{ request('search') }}">
-                <button type="submit" class="btn btn-outline-secondary shadow-sm">Lọc</button>
+        
+        <!-- Form Tìm kiếm & Lọc (Đã ép nằm trên 1 hàng ngang) -->
+        <div>
+            <form action="{{ route('books.index') }}" method="GET" class="d-flex flex-nowrap gap-2 align-items-center">
+                
+                <input type="text" name="search" class="form-control shadow-sm" style="width: 220px;" placeholder="Nhập tên sách..." value="{{ request('search') }}">
+                
+                <select name="category_id" class="form-select shadow-sm" style="width: 200px;">
+                    <option value="">-- Tất cả Thể loại --</option>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
+
+                <button type="submit" class="btn btn-secondary shadow-sm px-3 text-nowrap">Lọc</button>
+                <a href="{{ route('books.index') }}" class="btn btn-outline-danger shadow-sm px-3 text-nowrap">Xóa lọc</a>
             </form>
         </div>
     </div>

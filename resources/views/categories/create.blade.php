@@ -18,9 +18,15 @@
                     <form action="{{ route('categories.store') }}" method="POST">
                         @csrf
                         
-                        <div class="mb-4">
+                        <div class="mb-3">
                             <label class="form-label fw-semibold">Tên Thể loại:</label>
-                            <input type="text" name="name" class="form-control" placeholder="VD: Kinh tế, Tiểu thuyết..." required>
+                            <input type="text" name="name" class="form-control" placeholder="VD: Kinh tế..." required>
+                        </div>
+
+                        <!-- Thêm ô nhập Mô tả -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">Mô tả (Không bắt buộc):</label>
+                            <textarea name="description" class="form-control" rows="3" placeholder="Nhập mô tả chi tiết cho thể loại này..."></textarea>
                         </div>
 
                         <div class="d-flex justify-content-between">

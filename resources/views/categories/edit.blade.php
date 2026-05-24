@@ -19,9 +19,15 @@
                         @csrf 
                         @method('PUT')
                         
-                        <div class="mb-4">
+                        <div class="mb-3">
                             <label class="form-label fw-semibold">Tên Thể loại:</label>
                             <input type="text" name="name" class="form-control" value="{{ $category->name }}" required>
+                        </div>
+
+                        <!-- Thêm ô cập nhật Mô tả -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">Mô tả:</label>
+                            <textarea name="description" class="form-control" rows="3">{{ $category->description }}</textarea>
                         </div>
 
                         <div class="d-flex justify-content-between">

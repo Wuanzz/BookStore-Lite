@@ -8,11 +8,12 @@
 <body class="bg-light">
 
 <div class="container mt-4">
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm rounded mb-4 px-3">
         <div class="container-fluid">
             <div class="navbar-nav me-auto mb-2 mb-lg-0">
-                <a class="nav-link active fw-bold text-primary fs-5" href="{{ route('categories.index') }}">📑 Quản lý Thể loại</a>
                 <a class="nav-link fw-bold fs-5" href="{{ route('books.index') }}">📚 Quản lý Sách</a>
+                <a class="nav-link active fw-bold text-primary fs-5" href="{{ route('categories.index') }}">📑 Quản lý Thể loại</a>
             </div>
             <div class="d-flex align-items-center">
                 <span class="me-3 fw-semibold">Xin chào, <span class="text-success">{{ Auth::user()->name }}</span></span>
@@ -36,6 +37,7 @@
         <a href="{{ route('categories.create') }}" class="btn btn-primary shadow-sm">+ Thêm Thể loại Mới</a>
     </div>
 
+    <!-- Bảng dữ liệu có thêm cột Mô tả -->
     <div class="card shadow-sm">
         <div class="card-body p-0">
             <div class="table-responsive">
@@ -43,8 +45,9 @@
                     <thead class="table-dark">
                         <tr>
                             <th class="px-3" style="width: 10%;">ID</th>
-                            <th>Tên Thể loại</th>
-                            <th class="text-center" style="width: 20%;">Hành động</th>
+                            <th style="width: 25%;">Tên Thể loại</th>
+                            <th>Mô tả</th>
+                            <th class="text-center" style="width: 15%;">Hành động</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,12 +55,14 @@
                         <tr>
                             <td class="px-3 fw-bold">{{ $category->id }}</td>
                             <td><span class="badge bg-info text-dark fs-6">{{ $category->name }}</span></td>
+                            <!-- Hiển thị nội dung mô tả -->
+                            <td class="text-muted">{{ $category->description ?? 'Chưa có mô tả' }}</td>
                             <td class="text-center">
                                 <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-warning btn-sm">Sửa</a>
                                 <form action="{{ route('categories.destroy', $category->id) }}" method="POST" style="display:inline;">
                                     @csrf 
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Cậu có chắc chắn muốn xóa thể loại này không? (Lưu ý: Các sách thuộc thể loại này cũng sẽ bị xóa theo)')">Xóa</button>
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Cậu có chắc chắn muốn xóa?')">Xóa</button>
                                 </form>
                             </td>
                         </tr>

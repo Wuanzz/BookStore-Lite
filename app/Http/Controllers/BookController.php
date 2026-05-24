@@ -10,15 +10,25 @@ class BookController extends Controller
     // 1. ĐỌC & LỌC DỮ LIỆU
     public function index(Request $request)
     {
-        $query = Book::with('category'); // Lấy sách kèm thể loại (Khóa ngoại)
-        
-        // Chức năng Lọc (Tìm kiếm)
+        $query = Book::with('category');
+
+        // 1. Tìm kiếm theo tên sách
         if ($request->has('search') && $request->search != '') {
             $query->where('title', 'like', '%' . $request->search . '%');
         }
 
+        // 2. Lọc theo Thể loại (Tính năng mới)
+        if ($request->has('category_id') && $request->category_id != '') {
+            $query->where('category_id', $request->category_id);
+        }
+
         $books = $query->get();
-        return view('books.index', compact('books'));
+        
+        // Lấy danh sách tất cả thể loại để đưa vào menu Dropdown
+        $categories = Category::all();
+
+        // Trả về View cùng với cả biến $books và $categories
+        return view('books.index', compact('books', 'categories'));
     }
 
     // 2. THÊM DỮ LIỆU
