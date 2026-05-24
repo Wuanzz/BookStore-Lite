@@ -9,11 +9,21 @@
         </div>
     @endif
 
-    <div class="mb-3">
-        <a href="{{ route('categories.create') }}" class="btn btn-primary shadow-sm">+ Thêm Thể loại Mới</a>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <a href="{{ route('categories.create') }}" class="btn btn-primary shadow-sm">+ Thêm Thể loại Mới</a>
+        </div>
+        
+        <div>
+            <form action="{{ route('categories.index') }}" method="GET" class="d-flex flex-nowrap gap-2 align-items-center">
+                <input type="text" name="search" class="form-control shadow-sm" style="width: 250px;" placeholder="Nhập tên hoặc mô tả..." value="{{ request('search') }}">
+                
+                <button type="submit" class="btn btn-secondary shadow-sm px-3 text-nowrap">Tìm kiếm</button>
+                <a href="{{ route('categories.index') }}" class="btn btn-outline-danger shadow-sm px-3 text-nowrap">Xóa lọc</a>
+            </form>
+        </div>
     </div>
 
-    <!-- Bảng dữ liệu có thêm cột Mô tả -->
     <div class="card shadow-sm">
         <div class="card-body p-0">
             <div class="table-responsive">
@@ -27,7 +37,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($categories as $category)
+                        @forelse($categories as $category)
                         <tr>
                             <td class="px-3 fw-bold">{{ $category->id }}</td>
                             <td><span class="badge bg-info text-dark fs-6">{{ $category->name }}</span></td>
@@ -41,7 +51,11 @@
                                 </form>
                             </td>
                         </tr>
-                        @endforeach
+                        @empty
+                        <tr>
+                            <td colspan="4" class="text-center text-muted py-4">Không tìm thấy thể loại nào phù hợp với từ khóa của cậu!</td>
+                        </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>

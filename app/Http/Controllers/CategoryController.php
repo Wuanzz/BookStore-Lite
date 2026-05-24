@@ -6,9 +6,22 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::all();
+        // Khởi tạo query thay vì lấy toàn bộ ngay lập tức
+        $query = Category::query();
+
+        // Kiểm tra xem người dùng có nhập từ khóa tìm kiếm không
+        if ($request->has('search') && $request->search != '') {
+            $keyword = $request->search;
+            // Tìm kiếm tương đối theo tên hoặc mô tả
+            $query->where('name', 'like', '%' . $keyword . '%')
+                  ->orWhere('description', 'like', '%' . $keyword . '%');
+        }
+
+        // Thực thi query và lấy kết quả
+        $categories = $query->get();
+        
         return view('categories.index', compact('categories'));
     }
 
