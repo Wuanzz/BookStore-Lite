@@ -1,31 +1,6 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <title>Quản lý Sách</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="bg-light">
+@extends('layouts.app')
 
-<div class="container mt-4">
-    <!-- Navbar có thêm mục NXB -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm rounded mb-4 px-3">
-        <div class="container-fluid">
-            <div class="navbar-nav me-auto mb-2 mb-lg-0">
-                <a class="nav-link active fw-bold text-primary fs-5" href="{{ route('books.index') }}">📚 Quản lý Sách</a>
-                <a class="nav-link fw-bold fs-5" href="{{ route('categories.index') }}">📑 Quản lý Thể loại</a>
-                <a class="nav-link fw-bold fs-5" href="{{ route('publishers.index') }}">🏢 Quản lý NXB</a>
-            </div>
-            <div class="d-flex align-items-center">
-                <span class="me-3 fw-semibold">Xin chào, <span class="text-success">{{ Auth::user()->name }}</span></span>
-                <form action="{{ route('logout') }}" method="POST" class="m-0">
-                    @csrf 
-                    <button type="submit" class="btn btn-outline-danger btn-sm">Đăng xuất</button>
-                </form>
-            </div>
-        </div>
-    </nav>
-
+@section('content')
     <h2 class="mb-4 text-secondary fw-bold">Danh sách Kho Sách</h2>
 
     @if(session('success'))
@@ -79,7 +54,6 @@
                             <td class="px-3 fw-bold">{{ $book->id }}</td>
                             <td class="fw-semibold">{{ $book->title }}</td>
                             <td><span class="badge bg-info text-dark">{{ $book->category->name ?? 'Không có' }}</span></td>
-                            <!-- Cập nhật cách gọi tên NXB -->
                             <td><span class="badge bg-success">{{ $book->publisher->name ?? 'Chưa cập nhật' }}</span></td>
                             <td class="text-danger fw-bold">{{ number_format($book->price) }} VNĐ</td>
                             <td class="text-center">
@@ -97,7 +71,4 @@
             </div>
         </div>
     </div>
-</div>
-
-</body>
-</html>
+@endsection
