@@ -6,9 +6,19 @@ use Illuminate\Http\Request;
 
 class PublisherController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $publishers = Publisher::all();
+        $query = Publisher::query();
+
+        // Tìm kiếm theo tên, địa chỉ hoặc số điện thoại
+        if ($request->has('search') && $request->search != '') {
+            $keyword = $request->search;
+            $query->where('name', 'like', '%' . $keyword . '%')
+                  ->orWhere('address', 'like', '%' . $keyword . '%')
+                  ->orWhere('phone', 'like', '%' . $keyword . '%');
+        }
+
+        $publishers = $query->get();
         return view('publishers.index', compact('publishers'));
     }
 

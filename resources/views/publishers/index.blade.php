@@ -9,8 +9,20 @@
         </div>
     @endif
 
-    <div class="mb-3">
-        <a href="{{ route('publishers.create') }}" class="btn btn-primary shadow-sm">+ Thêm NXB Mới</a>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <a href="{{ route('publishers.create') }}" class="btn btn-primary shadow-sm">+ Thêm NXB Mới</a>
+        </div>
+        
+        <div>
+            <!-- Form tìm kiếm NXB -->
+            <form action="{{ route('publishers.index') }}" method="GET" class="d-flex flex-nowrap gap-2 align-items-center">
+                <input type="text" name="search" class="form-control shadow-sm" style="width: 280px;" placeholder="Nhập tên, địa chỉ hoặc SĐT..." value="{{ request('search') }}">
+                
+                <button type="submit" class="btn btn-secondary shadow-sm px-3 text-nowrap">Tìm kiếm</button>
+                <a href="{{ route('publishers.index') }}" class="btn btn-outline-danger shadow-sm px-3 text-nowrap">Xóa lọc</a>
+            </form>
+        </div>
     </div>
 
     <div class="card shadow-sm">
@@ -27,7 +39,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($publishers as $publisher)
+                        @forelse($publishers as $publisher)
                         <tr>
                             <td class="px-3 fw-bold">{{ $publisher->id }}</td>
                             <td><span class="badge bg-success fs-6">{{ $publisher->name }}</span></td>
@@ -42,7 +54,12 @@
                                 </form>
                             </td>
                         </tr>
-                        @endforeach
+                        @empty
+                        <tr>
+                            <!-- colspan=5 vì bảng này có 5 cột -->
+                            <td colspan="5" class="text-center text-muted py-4">Không tìm thấy Nhà xuất bản nào phù hợp với từ khóa của cậu!</td>
+                        </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
