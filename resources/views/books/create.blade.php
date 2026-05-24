@@ -23,19 +23,33 @@
                             <input type="text" name="title" class="form-control" placeholder="Nhập tên tựa sách..." required>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">Giá tiền (VNĐ):</label>
-                            <input type="number" name="price" class="form-control" placeholder="VD: 150000" required>
+                        <div class="row mb-3">
+                            <!-- Cột Thể loại -->
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Thể loại:</label>
+                                <select name="category_id" class="form-select" required>
+                                    <option value="">-- Chọn thể loại --</option>
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            
+                            <!-- Cột Nhà xuất bản (Sửa thành Dropdown) -->
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Nhà xuất bản:</label>
+                                <select name="publisher_id" class="form-select">
+                                    <option value="">-- Chọn NXB --</option>
+                                    @foreach($publishers as $publisher)
+                                        <option value="{{ $publisher->id }}">{{ $publisher->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
 
                         <div class="mb-4">
-                            <label class="form-label fw-semibold">Thể loại:</label>
-                            <select name="category_id" class="form-select" required>
-                                <option value="">-- Chọn thể loại sách --</option>
-                                @foreach($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endforeach
-                            </select>
+                            <label class="form-label fw-semibold">Giá tiền (VNĐ):</label>
+                            <input type="number" name="price" class="form-control" placeholder="VD: 150000" required>
                         </div>
 
                         <div class="d-flex justify-content-between">

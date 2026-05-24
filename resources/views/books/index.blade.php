@@ -8,11 +8,13 @@
 <body class="bg-light">
 
 <div class="container mt-4">
+    <!-- Navbar có thêm mục NXB -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm rounded mb-4 px-3">
         <div class="container-fluid">
             <div class="navbar-nav me-auto mb-2 mb-lg-0">
-                <a class="nav-link fw-bold fs-5" href="{{ route('categories.index') }}">📑 Quản lý Thể loại</a>
                 <a class="nav-link active fw-bold text-primary fs-5" href="{{ route('books.index') }}">📚 Quản lý Sách</a>
+                <a class="nav-link fw-bold fs-5" href="{{ route('categories.index') }}">📑 Quản lý Thể loại</a>
+                <a class="nav-link fw-bold fs-5" href="{{ route('publishers.index') }}">🏢 Quản lý NXB</a>
             </div>
             <div class="d-flex align-items-center">
                 <span class="me-3 fw-semibold">Xin chào, <span class="text-success">{{ Auth::user()->name }}</span></span>
@@ -33,18 +35,12 @@
     @endif
 
     <div class="d-flex justify-content-between align-items-center mb-4">
-        
-        <!-- Nút thêm sách -->
         <div>
-            <a href="{{ route('books.create') }}" class="btn btn-primary shadow-sm px-4 text-nowrap">
-                + Thêm Sách Mới
-            </a>
+            <a href="{{ route('books.create') }}" class="btn btn-primary shadow-sm px-4 text-nowrap">+ Thêm Sách Mới</a>
         </div>
         
-        <!-- Form Tìm kiếm & Lọc (Đã ép nằm trên 1 hàng ngang) -->
         <div>
             <form action="{{ route('books.index') }}" method="GET" class="d-flex flex-nowrap gap-2 align-items-center">
-                
                 <input type="text" name="search" class="form-control shadow-sm" style="width: 220px;" placeholder="Nhập tên sách..." value="{{ request('search') }}">
                 
                 <select name="category_id" class="form-select shadow-sm" style="width: 200px;">
@@ -62,6 +58,7 @@
         </div>
     </div>
 
+    <!-- Bảng hiển thị thông tin -->
     <div class="card shadow-sm">
         <div class="card-body p-0">
             <div class="table-responsive">
@@ -71,6 +68,7 @@
                             <th class="px-3">ID</th>
                             <th>Tên sách</th>
                             <th>Thể loại</th>
+                            <th>Nhà xuất bản</th>
                             <th>Giá tiền</th>
                             <th class="text-center">Hành động</th>
                         </tr>
@@ -79,9 +77,11 @@
                         @foreach($books as $book)
                         <tr>
                             <td class="px-3 fw-bold">{{ $book->id }}</td>
-                            <td>{{ $book->title }}</td>
+                            <td class="fw-semibold">{{ $book->title }}</td>
                             <td><span class="badge bg-info text-dark">{{ $book->category->name ?? 'Không có' }}</span></td>
-                            <td class="text-danger fw-semibold">{{ number_format($book->price) }} VNĐ</td>
+                            <!-- Cập nhật cách gọi tên NXB -->
+                            <td><span class="badge bg-success">{{ $book->publisher->name ?? 'Chưa cập nhật' }}</span></td>
+                            <td class="text-danger fw-bold">{{ number_format($book->price) }} VNĐ</td>
                             <td class="text-center">
                                 <a href="{{ route('books.edit', $book->id) }}" class="btn btn-warning btn-sm">Sửa</a>
                                 <form action="{{ route('books.destroy', $book->id) }}" method="POST" style="display:inline;">
